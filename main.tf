@@ -108,19 +108,3 @@ resource "mongodbatlas_database_user" "database_users" {
   }
   depends_on = [mongodbatlas_custom_db_role.roles]
 }
-
-
-# #tfsec:ignore:aws-ssm-secret-use-customer-key
-# resource "aws_secretsmanager_secret" "atlas_mongo_uri" {
-#   name        = "jenkins/credentials/mongo/${var.env}/uri-path"
-#   description = "Jenkins MongoDB URI Path"
-#   depends_on  = [mongodbatlas_advanced_cluster.shared]
-#   tags = {
-#     "jenkins:credentials:type" = "string"
-#   }
-# }
-
-# resource "aws_secretsmanager_secret_version" "uri_credentials" {
-#   secret_id     = aws_secretsmanager_secret.atlas_mongo_uri.id
-#   secret_string = "${local.uri_path[1]}/?retryWrites=true&w=majority"
-# }

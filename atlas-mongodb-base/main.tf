@@ -52,7 +52,6 @@ resource "aws_vpc_peering_connection_accepter" "this" {
   }
 }
 
-# TODO could use AWS Security Group IDs instead for least privilege?
 resource "mongodbatlas_project_ip_access_list" "this" {
   project_id = mongodbatlas_network_peering.this.project_id
   cidr_block = var.vpc_cidr_block
